@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 
 [Serializable]
-public class GameAction
+public struct GameAction
 {
-    private Dictionary<string, int> m_preconditions;
-    private Dictionary<string, int> m_postconditions;
+    public Dictionary<string, int> m_preconditions;
+    public Dictionary<string, int> m_postconditions;
 
-    private string m_title;
-    
-    
+    public string m_title;
 }

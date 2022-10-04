@@ -9,6 +9,10 @@ public class GameDirector : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI m_timerText;
     [SerializeField] private float m_timeBetweenTwoPresses = 1.0f;
+    
+    [SerializeField] private Environment m_environment;
+    [SerializeField] private List<GameAction> m_actions;
+    
     private float m_timer;
     private Button m_lastPress;
 
