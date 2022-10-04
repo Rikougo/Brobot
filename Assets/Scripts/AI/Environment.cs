@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using Utils;
 
 namespace AI
 {
     [Serializable]
     public class Environment : ICloneable
     {
-        private Dictionary<string, int> m_values;
-
-        public Dictionary<string, int> Values => m_values;
+        private EnvironmentState m_values;
+        public EnvironmentState Values => m_values;
 
         public Environment()
         {
-            m_values = new Dictionary<string, int>();
+            m_values = new EnvironmentState();
         }
 
         bool CanDoAction(GameAction p_action)
@@ -45,7 +45,7 @@ namespace AI
         {
             Environment l_new = new Environment
             {
-                m_values = new Dictionary<string, int>(this.m_values)
+                // m_values = new EnvironmentState(this.m_values)
             };
 
             return l_new;
