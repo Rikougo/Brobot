@@ -7,9 +7,7 @@ namespace Controllers
     public class AgentController : MonoBehaviour
     {
         private Entity m_entity;
-        
-        [SerializeField] private Button m_triggerButton;
- 
+
         public Vector3 TargetPosition
         {
             get;
@@ -21,15 +19,7 @@ namespace Controllers
             m_entity = GetComponent<Entity>();
             TargetPosition = transform.position;
         }
-
-        public void Start()
-        {
-            m_triggerButton.OnPressed.AddListener((_) =>
-            {
-                TargetPosition = new Vector3(3.8f, transform.position.y, 0.0f);
-            });
-        }
-
+        
         public void Update()
         {
             if (transform.position != TargetPosition)

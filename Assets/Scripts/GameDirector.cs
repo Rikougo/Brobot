@@ -1,7 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using AI;
+using AI.Actions;
+using Controllers;
 using Props;
 using TMPro;
 using UnityEngine;
@@ -10,44 +13,21 @@ using Environment = AI.Environment;
 
 public class GameDirector : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI m_timerText;
-    [SerializeField] private float m_timeBetweenTwoPresses = 1.0f;
-    
-    [SerializeField] private Environment m_environment;
-    [SerializeField] private List<GameAction> m_actions;
-    
-    private float m_timer;
-    private Button m_lastPress;
+    private List<GameAction> m_actions;
 
     public UnityEvent OnSuccess;
+    public UnityEvent<Entity, GameAction> OnActionMade;
 
-    private void Awake()
+    private void Start()
     {
-        m_timer = 0.0f;
+        m_actions = FindObjectsOfType<Actionable>().Select(p_action => p_action.GameAction).ToList();
     }
 
-    public void OnNewButtonPressed(Button p_button)
+    public void DoAction(Entity p_from, GameAction p_action)
     {
-        if (m_timer > 0.0f && m_lastPress != p_button)
-        {
-            OnSuccess?.Invoke();
-            gameObject.SetActive(false);
-        } else if (m_timer > 0.0f) return;
-
-        m_timer = m_timeBetweenTwoPresses;
-        m_lastPress = p_button;
+        Debug.Log($"{p_from.Name} did {p_action}");
+        OnActionMade?.Invoke(p_from, p_action);
     }
 
-    public void Update()
-    {
-        if (m_timer > 0.0f)
-        {
-            m_timer -= Time.deltaTime;
-            m_timerText.text = String.Format("Time remaining {0:0.##}", m_timer);    
-        }
-        else
-        {
-            m_timerText.text = "Button not pressed.";
-        }
-    }
+    public void Update() { }
 }
