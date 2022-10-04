@@ -1,51 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
 
-[Serializable]
-public class Environment : ICloneable
+namespace AI
 {
-    private Dictionary<string, int> m_values;
-
-    public Dictionary<string, int> Values => m_values;
-
-    public Environment()
+    [Serializable]
+    public class Environment : ICloneable
     {
-        m_values = new Dictionary<string, int>();
-    }
+        private Dictionary<string, int> m_values;
 
-    bool CanDoAction(GameAction p_action)
-    {
-        foreach (KeyValuePair<string, int> l_value in p_action.m_preconditions)
+        public Dictionary<string, int> Values => m_values;
+
+        public Environment()
         {
-            if (m_values[l_value.Key] != l_value.Value) return false;
+            m_values = new Dictionary<string, int>();
         }
 
-        return true;
-    }
-
-    void CommitAction(GameAction p_action)
-    {
-        foreach (KeyValuePair<string, int> l_value in p_action.m_postconditions)
+        bool CanDoAction(GameAction p_action)
         {
-            m_values[l_value.Key] = l_value.Value;
+            foreach (KeyValuePair<string, int> l_value in p_action.PreConditions)
+            {
+                if (m_values[l_value.Key] != l_value.Value) return false;
+            }
+
+            return true;
         }
-    }
 
-    Environment CloneFromAction(GameAction p_action)
-    {
-        Environment l_new = this.Clone() as Environment;
-        l_new.CommitAction(p_action);
-
-        return l_new;
-    }
-
-    public object Clone()
-    {
-        Environment l_new = new Environment
+        void CommitAction(GameAction p_action)
         {
-            m_values = new Dictionary<string, int>(this.m_values)
-        };
+            foreach (KeyValuePair<string, int> l_value in p_action.PostConditions)
+            {
+                m_values[l_value.Key] = l_value.Value;
+            }
+        }
 
-        return l_new;
+        Environment CloneFromAction(GameAction p_action)
+        {
+            Environment l_new = this.Clone() as Environment;
+            l_new.CommitAction(p_action);
+
+            return l_new;
+        }
+
+        public object Clone()
+        {
+            Environment l_new = new Environment
+            {
+                m_values = new Dictionary<string, int>(this.m_values)
+            };
+
+            return l_new;
+        }
     }
 }

@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Props;
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace Controllers
 {
     [RequireComponent(typeof(Entity))]
     public class AgentController : MonoBehaviour

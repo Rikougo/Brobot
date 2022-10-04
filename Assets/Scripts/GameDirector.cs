@@ -1,9 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using AI;
+using Props;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using Environment = AI.Environment;
 
 public class GameDirector : MonoBehaviour
 {

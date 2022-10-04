@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Button : MonoBehaviour
+namespace Props
 {
-    public UnityEvent<Button> OnPressed;
-    
-    public void PressButton()
+    public class Button : MonoBehaviour
     {
-        OnPressed?.Invoke(this);
+        public UnityEvent<Button> OnPressed;
+    
+        public void PressButton()
+        {
+            OnPressed?.Invoke(this);
+        }
     }
 }
