@@ -363,7 +363,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_speed: 5
   m_modelObject: {fileID: 8225351525214965580}
+  m_type: 0
   m_name: Player
+  m_targetRotation: 0
+  m_rotationSpeed: 250
+  m_damping: 10
 --- !u!114 &7539702988910144117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,7 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d4340bb4714969b6369ba351455ad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_hintText: {fileID: 1102198233}
+  m_hintText: {fileID: 1102198235}
 --- !u!114 &7539702988910144116
 MonoBehaviour:
   m_ObjectHideFlags: 0
