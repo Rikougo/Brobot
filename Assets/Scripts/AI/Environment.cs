@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Controllers;
+using UnityEngine;
 using Utils;
 
 namespace AI
@@ -16,11 +17,26 @@ namespace AI
             m_values = new EnvironmentState();
         }
 
+        public bool HasPreconditions(EnvironmentState p_preconditions)
+        {
+            foreach (KeyValuePair<string, int> l_value in m_values)
+            {
+                Debug.Log($"{l_value.Key}: {l_value.Value}");
+            }
+            
+            foreach (KeyValuePair<string, int> l_value in p_preconditions)
+            {
+                if (m_values.GetValueOrDefault(l_value.Key, 0) != l_value.Value) return false;
+            }
+
+            return true;
+        }
+
         public bool CanDoAction(GameAction p_action, Entity actor)
         {
             foreach (KeyValuePair<string, int> l_value in p_action.PreConditions)
             {
-                if (m_values[FixKey(l_value.Key, actor)] != l_value.Value) return false;
+                if (m_values.GetValueOrDefault(FixKey(l_value.Key, actor), 0) != l_value.Value) return false;
             }
 
             return true;

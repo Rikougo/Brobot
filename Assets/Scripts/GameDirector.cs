@@ -1,32 +1,31 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using AI;
-using AI.Actions;
 using Controllers;
-using Props;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using Environment = AI.Environment;
 
 public class GameDirector : MonoBehaviour
 {
-    private List<GameAction> m_actions;
-
-    public UnityEvent OnSuccess;
     public UnityEvent<Entity, GameAction> OnActionMade;
 
-    private void Start()
+    private List<EnvironmentDependent> m_envDependantProps;
+    [SerializeField] private AgentController m_agent;
+
+    private void Awake()
     {
-        m_actions = FindObjectsOfType<Actionable>().Select(p_action => p_action.GameAction).ToList();
+        m_envDependantProps = GameObject.FindObjectsOfType<EnvironmentDependent>().ToList();
     }
 
     public void DoAction(Entity p_from, GameAction p_action)
     {
         Debug.Log($"{p_from.Name} did {p_action}");
         OnActionMade?.Invoke(p_from, p_action);
+        
+        foreach(EnvironmentDependent l_object in m_envDependantProps)
+        {
+            l_object.OnEnvironmentChange(m_agent.Planifier.Environment);
+        }
     }
 
     public void Update() { }

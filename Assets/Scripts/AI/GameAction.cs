@@ -17,5 +17,7 @@ namespace AI
         public string Title => m_title;
         public EnvironmentState PreConditions => m_preConditions;
         public EnvironmentState PostConditions => m_postConditions;
+
+        public GameObject Owner { get; set; }
     }
 }
