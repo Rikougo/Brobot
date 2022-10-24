@@ -41,6 +41,11 @@ namespace AI
             }
         }
 
+        List<GameAction> ListAllActions()
+        {
+            throw new System.NotImplementedException();
+        }
+
         struct SearchNode
         {
             public Environment environment;

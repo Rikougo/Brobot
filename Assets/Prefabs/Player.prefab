@@ -251,7 +251,6 @@ GameObject:
   - component: {fileID: 7539702988910144115}
   - component: {fileID: 7539702988910144117}
   - component: {fileID: 7539702988910144116}
-  - component: {fileID: 987415954}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -363,7 +362,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_speed: 5
-  m_modelObject: {fileID: 7233641069532555245}
+  m_modelObject: {fileID: 8225351525214965580}
+  m_name: Player
 --- !u!114 &7539702988910144117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -479,14 +479,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!33 &987415954
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7539702988910144124}
-  m_Mesh: {fileID: 0}
 --- !u!1 &8225351525214965580
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,11 +588,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d165e390fc0ac7e4e8f22c5305b7ecc4, type: 3}
---- !u!1 &7233641069532555245 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d165e390fc0ac7e4e8f22c5305b7ecc4, type: 3}
-  m_PrefabInstance: {fileID: 7539702988578167484}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8009896676134911319 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d165e390fc0ac7e4e8f22c5305b7ecc4, type: 3}
