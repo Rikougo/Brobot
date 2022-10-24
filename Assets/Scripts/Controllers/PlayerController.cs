@@ -13,7 +13,8 @@ namespace Controllers
     public class PlayerController : MonoBehaviour
     {
         private PlayerInput m_input;
-        public Entity m_entity;
+        private Entity m_entity;
+        private Transform m_mainCam;
         [SerializeField] private TextMeshProUGUI m_hintText;
 
         private List<Actionable> m_actionsInRange;
@@ -27,11 +28,14 @@ namespace Controllers
         
         public void Start()
         {
+            m_mainCam = GameObject.FindWithTag("MainCamera").transform;
+
             m_hintText.gameObject.SetActive(false);
             
             m_input.actions["Move"].performed += (p_ctx) =>
             {
-                m_entity.Direction = p_ctx.ReadValue<Vector2>();
+                Vector2 l_inputAxis = p_ctx.ReadValue<Vector2>();
+                m_entity.Direction = l_inputAxis;
             };
 
             m_input.actions["Move"].canceled += (_) =>

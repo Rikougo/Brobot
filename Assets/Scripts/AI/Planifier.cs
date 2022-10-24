@@ -17,6 +17,8 @@ namespace AI
         private List<PlannedAction> m_plan = new List<PlannedAction>();
         private Environment m_environment = new Environment();
 
+        public Environment Environment => m_environment;
+
         public PlannedAction? NextAction
         {
             get
@@ -31,6 +33,7 @@ namespace AI
             if(action == next?.action && next?.self == (actor == Agent))
             {
                 m_plan.RemoveAt(0);
+                m_environment.CommitAction(action, actor);
             }
             else if (actor != Agent)
             {
@@ -38,7 +41,8 @@ namespace AI
             }
             else
             {
-                m_plan.Clear();
+                m_plan.Clear();     
+                m_environment.CommitAction(action, actor);
             }
         }
 
