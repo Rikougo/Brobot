@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Controllers;
 
 namespace AI
 {
@@ -15,28 +16,28 @@ namespace AI
             m_values = new Dictionary<string, int>();
         }
 
-        bool CanDoAction(GameAction p_action)
+        public bool CanDoAction(GameAction p_action, Entity actor)
         {
             foreach (KeyValuePair<string, int> l_value in p_action.PreConditions)
             {
-                if (m_values[l_value.Key] != l_value.Value) return false;
+                if (m_values[FixKey(l_value.Key, actor)] != l_value.Value) return false;
             }
 
             return true;
         }
 
-        void CommitAction(GameAction p_action)
+        public void CommitAction(GameAction p_action, Entity actor)
         {
             foreach (KeyValuePair<string, int> l_value in p_action.PostConditions)
             {
-                m_values[l_value.Key] = l_value.Value;
+                m_values[FixKey(l_value.Key, actor)] = l_value.Value;
             }
         }
 
-        Environment CloneFromAction(GameAction p_action)
+        public Environment CloneFromAction(GameAction p_action, Entity actor)
         {
             Environment l_new = this.Clone() as Environment;
-            l_new.CommitAction(p_action);
+            l_new.CommitAction(p_action, actor);
 
             return l_new;
         }
@@ -49,6 +50,11 @@ namespace AI
             };
 
             return l_new;
+        }
+
+        string FixKey(string key, Entity actor)
+        {
+            return key.Replace("%", actor.Type.ToString());
         }
     }
 }

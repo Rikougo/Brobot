@@ -5,11 +5,18 @@ namespace Controllers
     [RequireComponent(typeof(CharacterController))]
     public class Entity : MonoBehaviour
     {
+        public enum EntityType
+        {
+            Player,
+            Agent
+        }
         private CharacterController m_controller;
 
         private Vector2 m_direction;
         [SerializeField] private float m_speed = 1.0f;
         [SerializeField] private GameObject m_modelObject;
+        [SerializeField] private EntityType m_type;
+        public EntityType Type => m_type;
 
         public Vector2 Direction
         {
