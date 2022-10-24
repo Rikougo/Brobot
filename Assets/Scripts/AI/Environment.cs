@@ -14,6 +14,8 @@ namespace AI
         public Environment()
         {
             m_values = new EnvironmentState();
+            m_values["PlayerisPlayer"] = 1;
+            m_values["AgentisAgent"] = 1;
         }
 
         public bool CanDoAction(GameAction p_action, Entity actor)
