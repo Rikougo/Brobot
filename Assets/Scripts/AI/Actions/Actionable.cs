@@ -19,6 +19,7 @@ namespace AI.Actions
                 Debug.LogError($"Actionable ${gameObject.GetInstanceID()} is missing action or director ref.");
                 this.enabled = false;
             }
+            m_action.Owner = gameObject;
         }
 
         public void DoAction(Entity p_from)

@@ -13,7 +13,7 @@ namespace Controllers
     public class PlayerController : MonoBehaviour
     {
         private PlayerInput m_input;
-        private Entity m_entity;
+        public Entity m_entity;
         [SerializeField] private TextMeshProUGUI m_hintText;
 
         private List<Actionable> m_actionsInRange;

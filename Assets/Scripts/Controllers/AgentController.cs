@@ -1,5 +1,6 @@
 ﻿using Props;
 using UnityEngine;
+using System.Linq;
 
 namespace Controllers
 {
@@ -7,6 +8,7 @@ namespace Controllers
     public class AgentController : MonoBehaviour
     {
         private Entity m_entity;
+        private AI.Planifier m_planifier = new AI.Planifier();
 
         public Vector3 TargetPosition
         {
@@ -19,6 +21,13 @@ namespace Controllers
             m_entity = GetComponent<Entity>();
             TargetPosition = transform.position;
         }
+
+        private void Start()
+        {
+            m_planifier.AllActions = FindObjectsOfType<AI.Actions.Actionable>().Select(p_action => p_action.GameAction).ToList();
+            GameObject.FindWithTag("GameController").GetComponent<GameDirector>().OnActionMade.AddListener(m_planifier.SeeAction);
+            m_planifier.Agent = m_entity;
+        }
         
         public void Update()
         {
@@ -30,6 +39,10 @@ namespace Controllers
             else
             {
                 m_entity.Direction = Vector2.zero;
+            }
+            if(Input.GetKeyDown("p"))
+            {
+                Debug.Log(m_planifier.NextAction?.action?.Title);
             }
         }
 

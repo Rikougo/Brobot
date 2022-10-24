@@ -20,7 +20,7 @@ namespace AI
         {
             foreach (KeyValuePair<string, int> l_value in p_action.PreConditions)
             {
-                if (m_values[FixKey(l_value.Key, actor)] != l_value.Value) return false;
+                if (m_values.GetValueOrDefault(FixKey(l_value.Key, actor), 0) != l_value.Value) return false;
             }
 
             return true;

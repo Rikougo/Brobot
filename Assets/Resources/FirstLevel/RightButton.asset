@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: RightButton
   m_EditorClassIdentifier: 
   m_preConditions:
-    m_keys: []
-    m_values: 
+    m_keys:
+    - LeftPressed
+    - RightPressed
+    m_values: 0100000000000000
   m_postConditions:
-    m_keys: []
-    m_values: 
-  m_title: 
+    m_keys:
+    - RightPressed
+    m_values: 01000000
+  m_title: Right
