@@ -21,11 +21,6 @@ namespace AI
 
         public bool HasPreconditions(EnvironmentState p_preconditions)
         {
-            foreach (KeyValuePair<string, int> l_value in m_values)
-            {
-                Debug.Log($"{l_value.Key}: {l_value.Value}");
-            }
-            
             foreach (KeyValuePair<string, int> l_value in p_preconditions)
             {
                 if (m_values.GetValueOrDefault(l_value.Key, 0) != l_value.Value) return false;
@@ -62,9 +57,12 @@ namespace AI
 
         public object Clone()
         {
-            Environment l_new = new Environment
+            Environment l_new = new Environment();
             {
-                // m_values = new EnvironmentState(this.m_values)
+                foreach(var kv in m_values)
+                {
+                    l_new.m_values[kv.Key] = kv.Value;
+                }
             };
 
             return l_new;

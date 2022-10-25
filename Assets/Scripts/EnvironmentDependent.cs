@@ -17,11 +17,10 @@ public class EnvironmentDependent : MonoBehaviour
     {
         if (m_consumed) return;
         
-        Debug.Log("Fetching preconditions");
         if (p_environment.HasPreconditions(m_precondition))
         {
-            Debug.Log("Preconditions met, do action !");
-            OnAction?.Invoke(); 
+            OnAction?.Invoke();
+            m_consumed = true;
         }
     }
 }
