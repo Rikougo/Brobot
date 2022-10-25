@@ -68,10 +68,12 @@ namespace AI
                 {
                     foreach(Entity actor in new Entity[2]{Agent, player})
                     {
-                        if(!explorations[1][i].environment.CanDoAction(a, actor)) continue;
+                        if(!explorations[1][i].environment.CanDoAction(a, actor))
+                        {
+                            continue;
+                        }
                         if(!explorations[0][i].environment.CanDoAction(a, actor))
                         {
-                            //TODO : found!
                             m_plan.Clear();
                             m_plan.Add(new PlannedAction{action = a, self = actor == Agent});
                             int current = i;

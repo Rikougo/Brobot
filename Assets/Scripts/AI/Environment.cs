@@ -57,9 +57,12 @@ namespace AI
 
         public object Clone()
         {
-            Environment l_new = new Environment
+            Environment l_new = new Environment();
             {
-                // m_values = new EnvironmentState(this.m_values)
+                foreach(var kv in m_values)
+                {
+                    l_new.m_values[kv.Key] = kv.Value;
+                }
             };
 
             return l_new;
