@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: bf290275a4b24374cb861dc7ebcdb58d
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - BPmono
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 8ab43e32712990d47bf915a117f6893a, type: 3}
+  - {fileID: 12800000, guid: 12f5f6708f184aa4fa3112f97b509cc3, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

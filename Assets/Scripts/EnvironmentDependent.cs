@@ -21,7 +21,7 @@ public class EnvironmentDependent : MonoBehaviour
         if (p_environment.HasPreconditions(m_precondition))
         {
             Debug.Log("Preconditions met, do action !");
-            OnAction?.Invoke();
+            OnAction?.Invoke(); 
         }
     }
 }

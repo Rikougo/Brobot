@@ -478,6 +478,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 456e328b-57ab-48ab-a86f-b0c6d5570af1
     m_ActionName: Player/Debug[/Keyboard/numpad0]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 48cc32ff-1b92-4d5b-807c-753065e309c6
+    m_ActionName: Player/CamSwitch[/Keyboard/q,/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player

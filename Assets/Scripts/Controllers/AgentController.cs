@@ -42,6 +42,7 @@ namespace Controllers
         {
             m_planifier.AllActions = FindObjectsOfType<AI.Actions.Actionable>().Select(p_action => p_action.GameAction).ToList();
             GameObject.FindWithTag("GameController").GetComponent<GameDirector>().OnActionMade.AddListener(m_planifier.SeeAction);
+            GameObject.FindWithTag("GameController").GetComponent<GameDirector>().AfterActionMade.AddListener(AfterActionMade);
             m_planifier.Agent = m_entity;
         }
         
@@ -64,12 +65,13 @@ namespace Controllers
                     TargetObject = null;
                 }
             }
-            if(Input.GetKeyDown("p"))
-            {
-                TargetObject = m_planifier.NextAction?.action.Owner;
-            }
         }
 
+        public void AfterActionMade()
+        {
+            TargetObject = m_planifier.NextAction?.action.Owner;
+        }
+        
         public void SetTarget(Vector3 p_target)
         {
             TargetPosition = p_target;

@@ -29,13 +29,15 @@ namespace Controllers
         public void Start()
         {
             m_mainCam = GameObject.FindWithTag("MainCamera").transform;
+            Vector2 l_forward = new Vector2(m_mainCam.forward.x, m_mainCam.forward.z);
+            Vector2 l_right = new Vector2(m_mainCam.right.x, m_mainCam.right.z);
 
             m_hintText.gameObject.SetActive(false);
             
             m_input.actions["Move"].performed += (p_ctx) =>
             {
                 Vector2 l_inputAxis = p_ctx.ReadValue<Vector2>();
-                m_entity.Direction = l_inputAxis;
+                m_entity.Direction = l_inputAxis.y * l_forward + l_inputAxis.x * l_right;
             };
 
             m_input.actions["Move"].canceled += (_) =>
@@ -49,6 +51,14 @@ namespace Controllers
                 {
                     m_actionsInRange.Last().DoAction(m_entity);
                 }
+            };
+            
+            m_input.actions["CamSwitch"].performed += (p_ctx) => {
+                GameObject.FindWithTag("GameController").GetComponent<GameDirector>().NextCamera((int)p_ctx.ReadValue<float>());
+            };
+            
+            m_input.actions["Help"].performed += (p_ctx) => {
+                GameObject.FindObjectOfType<UILogger>().PrintHelp();
             };
         }
 
