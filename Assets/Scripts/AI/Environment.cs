@@ -21,11 +21,6 @@ namespace AI
 
         public bool HasPreconditions(EnvironmentState p_preconditions)
         {
-            foreach (KeyValuePair<string, int> l_value in m_values)
-            {
-                Debug.Log($"{l_value.Key}: {l_value.Value}");
-            }
-            
             foreach (KeyValuePair<string, int> l_value in p_preconditions)
             {
                 if (m_values.GetValueOrDefault(l_value.Key, 0) != l_value.Value) return false;
