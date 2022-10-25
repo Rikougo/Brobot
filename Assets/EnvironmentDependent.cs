@@ -17,6 +17,7 @@ public class EnvironmentDependent : MonoBehaviour
     {
         if (m_consumed) return;
         
+        m_consumed = true;
         if (p_environment.HasPreconditions(m_precondition))
         {
             OnAction?.Invoke();
