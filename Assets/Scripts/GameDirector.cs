@@ -41,7 +41,7 @@ public class GameDirector : MonoBehaviour
 
     public void NextCamera(int p_delta)
     {
-        m_currentCamera = (m_currentCamera + p_delta) % m_virtualCameras.Count;
+        m_currentCamera = (p_delta < 0 && m_currentCamera == 0) ? (m_virtualCameras.Count - 1) : (m_currentCamera + p_delta) % m_virtualCameras.Count;
         Debug.Log($"{p_delta} {m_currentCamera}");
 
         m_virtualCameras[m_currentCamera].Priority = 10;
