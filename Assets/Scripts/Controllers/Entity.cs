@@ -20,7 +20,7 @@ namespace Controllers
         [SerializeField] private string m_name;
         
         [SerializeField] private float m_targetRotation;
-        [SerializeField] private float m_rotationSpeed = 250.0f;
+        // [SerializeField] private float m_rotationSpeed = 250.0f;
         [SerializeField] private float m_damping = 10.0f;
 
         public string Name => m_name;
