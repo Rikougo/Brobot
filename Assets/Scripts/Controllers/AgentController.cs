@@ -26,7 +26,7 @@ namespace Controllers
             set
             {
                 m_target = value;
-
+                
                 if (m_target is not null) TargetPosition = m_target.transform.position;
                 else TargetPosition = transform.position;
             }
@@ -61,20 +61,16 @@ namespace Controllers
 
                 if (TargetObject is not null)
                 {
-                    TargetObject.GetComponent<Actionable>().DoAction(this.m_entity);
+                    GameObject target = TargetObject;
                     TargetObject = null;
+                    target.GetComponent<Actionable>().DoAction(this.m_entity);
                 }
             }
         }
 
         public void AfterActionMade()
         {
-            TargetObject = m_planifier.NextAction?.action.Owner;
-        }
-        
-        public void SetTarget(Vector3 p_target)
-        {
-            TargetPosition = p_target;
+            if(m_planifier.NextAction?.self == true) TargetObject = m_planifier.NextAction?.action.Owner;
         }
     }
 }

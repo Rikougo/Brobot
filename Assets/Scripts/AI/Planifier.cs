@@ -30,20 +30,17 @@ namespace AI
         public void SeeAction(Entity actor, GameAction action)
         {
             PlannedAction? next = NextAction;
+            bool just_as_planned = false;
             if(action == next?.action && next?.self == (actor == Agent))
             {
                 m_plan.RemoveAt(0);
-                m_environment.CommitAction(action, actor);
+                just_as_planned = true;
             }
-            else if (actor != Agent)
+            if(m_plan.Count == 0 || !just_as_planned)
             {
-                PlanWithAction(action, actor);
+                m_plan = PlanWithAction(action, actor, m_environment);
             }
-            else
-            {
-                m_plan.Clear();     
-                m_environment.CommitAction(action, actor);
-            }
+            m_environment.CommitAction(action, actor);
         }
 
         List<GameAction> ListAllActions()
@@ -57,12 +54,11 @@ namespace AI
             public PlannedAction? action;
             public int? previous;
         }
-        void PlanWithAction(GameAction action, Entity player)
+        List<PlannedAction> PlanWithAction(GameAction action, Entity player, Environment environment, int max_iter=1000)
         {
             List<GameAction> all_actions = ListAllActions();
-            List<SearchNode>[] explorations = {new List<SearchNode>{new SearchNode{environment = m_environment}}, new List<SearchNode>{new SearchNode{environment = m_environment.CloneFromAction(action, player)}}};
-            m_environment = explorations[1][0].environment;
-            for(int i = 0; i < explorations[1].Count && i < 1000; ++i) //TODO : limite de profondeur?
+            List<SearchNode>[] explorations = {new List<SearchNode>{new SearchNode{environment = environment}}, new List<SearchNode>{new SearchNode{environment = environment.CloneFromAction(action, player)}}};
+            for(int i = 0; i < explorations[1].Count && max_iter > 0; ++i, --max_iter)
             {
                 foreach(GameAction a in all_actions)
                 {
@@ -74,16 +70,20 @@ namespace AI
                         }
                         if(!explorations[0][i].environment.CanDoAction(a, actor))
                         {
-                            m_plan.Clear();
-                            m_plan.Add(new PlannedAction{action = a, self = actor == Agent});
+                            var plan = new List<PlannedAction>();
+                            plan.Add(new PlannedAction{action = a, self = actor == Agent});
                             int current = i;
                             while(explorations[1][current].previous != null)
                             {
-                                m_plan.Add(explorations[1][current].action.Value);
+                                plan.Add(explorations[1][current].action.Value);
                                 current = explorations[1][current].previous.Value;
                             }
-                            m_plan.Reverse();
-                            return;
+                            plan.Reverse();
+                            if(actor == Agent)
+                            {
+                                plan.AddRange(PlanWithAction(a, player, explorations[1][i].environment, max_iter));
+                            }
+                            return plan;
                         }
                         for(int j = 0; j < 2; ++j)
                         {
@@ -97,6 +97,7 @@ namespace AI
                 }
             }
             Debug.Log("Fail");
+            return new List<PlannedAction>();
         }
     }
 }
