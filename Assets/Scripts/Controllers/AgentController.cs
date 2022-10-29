@@ -27,7 +27,7 @@ namespace Controllers
             set
             {
                 m_target = value;
-
+                
                 if (m_target is not null) TargetPosition = m_target.transform.position;
                 else TargetPosition = transform.position;
             }
@@ -83,14 +83,16 @@ namespace Controllers
 
                 if (TargetObject is not null)
                 {
-                    TargetObject.GetComponent<Actionable>().DoAction(this.m_entity);
+                    GameObject target = TargetObject;
                     TargetObject = null;
+                    target.GetComponent<Actionable>().DoAction(this.m_entity);
                 }
             }
         }
 
         public void AfterActionMade()
         {
+            if(m_planifier.NextAction?.self == true) TargetObject = m_planifier.NextAction?.action.Owner;
             TargetObject = m_planifier.NextAction?.action.Owner;
 
             if (TargetObject is not null)
