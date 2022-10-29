@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.18039216, g: 0.20392157, b: 0.2509804, a: 0.6509804}
+  m_Color: {r: 0.18039216, g: 0.20392157, b: 0.2509804, a: 0.33333334}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -117,4 +117,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 2671872423388961774, guid: 09f82eef83fbbc644bc0b3760768ad37, type: 3}
-  maxLine: 4
+  maxLine: 5
