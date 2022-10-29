@@ -150,8 +150,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 77732701}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.4, z: -5}
-  m_LocalScale: {x: 10, y: 0.6, z: 0.25}
+  m_LocalPosition: {x: 0, y: 0.5, z: -5}
+  m_LocalScale: {x: 10, y: 1, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 708850363}
@@ -247,8 +247,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 222548644}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -4, y: 0.4, z: 0}
-  m_LocalScale: {x: 10, y: 0.6, z: 0.25}
+  m_LocalPosition: {x: -4, y: 0.5, z: 0}
+  m_LocalScale: {x: 10, y: 1, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 708850363}
@@ -343,6 +343,7 @@ GameObject:
   m_Component:
   - component: {fileID: 231413240}
   - component: {fileID: 231413239}
+  - component: {fileID: 231413241}
   m_Layer: 0
   m_Name: GameDirector
   m_TagString: GameController
@@ -382,7 +383,7 @@ MonoBehaviour:
       m_Calls: []
   m_agent: {fileID: 224084631}
   m_blackScreen: {fileID: 966836020}
-  m_nextScene: 0
+  m_nextScene: 2
   m_loadingDuration: 1
 --- !u!4 &231413240
 Transform:
@@ -399,6 +400,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &231413241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231413238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77f08604b54a7b84ebb52825e32b88cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_precondition:
+    m_keys:
+    - Ended
+    m_values: 01000000
+  OnAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 231413239}
+        m_TargetAssemblyTypeName: GameDirector, Assembly-CSharp
+        m_MethodName: LoadNextScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &288539825
 GameObject:
   m_ObjectHideFlags: 3
@@ -870,8 +902,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 945686157}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 4, y: 0.4, z: -0}
-  m_LocalScale: {x: 10, y: 0.6, z: 0.25}
+  m_LocalPosition: {x: 4, y: 0.5, z: -0}
+  m_LocalScale: {x: 10, y: 1, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 708850363}
@@ -1110,7 +1142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &966836019
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1138,13 +1170,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 966836018}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.084905684, g: 0.084905684, b: 0.084905684, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1722,7 +1754,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2269788822794507587, guid: 560f4276cd88e3741bf37f56076b6b5a, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2269788822794507587, guid: 560f4276cd88e3741bf37f56076b6b5a, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1730,7 +1762,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2269788822794507587, guid: 560f4276cd88e3741bf37f56076b6b5a, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2269788822794507587, guid: 560f4276cd88e3741bf37f56076b6b5a, type: 3}
       propertyPath: m_AnchorMin.y
@@ -1774,7 +1806,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2269788822794507587, guid: 560f4276cd88e3741bf37f56076b6b5a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -225
+      value: 225
       objectReference: {fileID: 0}
     - target: {fileID: 2269788822794507587, guid: 560f4276cd88e3741bf37f56076b6b5a, type: 3}
       propertyPath: m_AnchoredPosition.y

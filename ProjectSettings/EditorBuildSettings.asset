@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DoubleDoubleDoors.unity
     guid: 17d73602b1b40992da75f674b821ae7e
+  - enabled: 1
+    path: Assets/Scenes/LongSequence.unity
+    guid: 9ff68b74b160edd888ba923663ae9ac3
   m_configObjects: {}

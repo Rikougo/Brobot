@@ -20,6 +20,7 @@ MonoBehaviour:
     - '%isPlayer'
     m_values: 01000000010000000100000001000000
   m_postConditions:
-    m_keys: []
-    m_values: 
+    m_keys:
+    - Ended
+    m_values: 01000000
   m_title: Target
